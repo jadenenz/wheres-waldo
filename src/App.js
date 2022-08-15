@@ -1,25 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import Picture from './components/Picture'
+import './styles.css'
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Picture />
     </div>
   );
 }
 
 export default App;
+
+//TODO:
+
+//   (DONE)MAKE FRONTEND WITH STATIC PHOTO
+//   (DONE)FIGURE OUT HOW TO GET X,Y COORDINATES OF MOUSE CLICK ON PHOTO (EVENTS PROPERTIES?)
+//ADD FUNCTIONALITY TO HIGHLIGHT THE CLICKED AREA AND POP UP A DROPDOWN MENU W/ CHARACTER SELECTION
+//ADD COORDINATE BOXES TO THE BACKEND CORRELATING TO EACH SELECTABLE CHARACTER IN THE PHOTO(two opposite corders only)
+//VALIDATE THE FRONT-END SELECTION AGAINST THE BACKEND COORDINATES
+//ADD A TIMER TO THE FRONTEND
+//FIGURE OUT MORE TODOS FOR SCORE REGISTRATION STUFF

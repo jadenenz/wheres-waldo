@@ -1,0 +1,23 @@
+.picture--container{
+    display: flex;
+    justify-content: center;
+    margin-top: 15vh
+}
+
+.highlight--container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.highlight--box {
+    height: 50px;
+    width: 50px;
+    border: solid red
+}
+
+.highlight--buttons {
+    display: flex;
+    flex-direction: column;
+    max-width: 4rem;
+}
