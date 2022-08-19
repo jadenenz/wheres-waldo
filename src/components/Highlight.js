@@ -4,11 +4,12 @@ function Highlight( { coords } ) {
 
     const divStyle = {
         position: 'absolute',
-        left: coords.x 
+        left: coords.x,
+        top: coords.y,
     }
 
     return (
-        <div style="" className="highlight--container">
+        <div style={divStyle} className="highlight--container">
             <div className="highlight--box"></div>
             <div className="highlight--buttons">
                 <button>Waldo</button>

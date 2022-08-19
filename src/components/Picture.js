@@ -13,13 +13,10 @@ function Picture() {
 
     const emptyCoords = (displayHighlight.x === null && displayHighlight.y === null)
 
-    // function displayHighlight(x,y){
-    
-    // }
 
-    function handleClick(e) {
-        const x = e.pageX - e.target.offsetLeft;
-        const y = e.pageY - e.target.offsetTop;
+    function handleClick(e) { //got this working using layerX, we'll see if that causes problems I guess
+        const x = e.nativeEvent.layerX-25 //e.pageX - e.target.offsetLeft;
+        const y = e.nativeEvent.layerY-25 //e.pageY - e.target.offsetTop;
         setDisplayHighlight(
             {
                 x: x,
@@ -31,8 +28,10 @@ function Picture() {
 
     return (
         <div className="picture--container">
+            <div className="picture--actual-container">
             <img src={waldoImg} onClick={handleClick} alt="wheres waldo puzzle"></img>
             {!emptyCoords && <Highlight coords={displayHighlight} />}
+            </div>
         </div>
     )
 }

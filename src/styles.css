@@ -1,7 +1,11 @@
 .picture--container{
     display: flex;
     justify-content: center;
-    margin-top: 15vh
+    margin-top: 15vh;
+}
+
+.picture--container > img {
+    position: relative;
 }
 
 .highlight--container {
@@ -20,4 +24,8 @@
     display: flex;
     flex-direction: column;
     max-width: 4rem;
+}
+
+.picture--actual-container {
+    position: relative;
 }
