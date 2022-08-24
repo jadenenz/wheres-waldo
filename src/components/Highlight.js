@@ -1,6 +1,6 @@
 import React from "react"
 
-function Highlight( { coords } ) {
+function Highlight( { coords, checkHighlight } ) {
 
     const divStyle = {
         position: 'absolute',
@@ -12,7 +12,7 @@ function Highlight( { coords } ) {
         <div style={divStyle} className="highlight--container">
             <div className="highlight--box"></div>
             <div className="highlight--buttons">
-                <button>Waldo</button>
+                <button onClick={checkHighlight}>Waldo</button>
                 <button>Odlaw</button>
                 <button>Wizard</button>
             </div>
@@ -21,5 +21,3 @@ function Highlight( { coords } ) {
 }
 
 export default Highlight
-
-// https://reactjs.org/docs/dom-elements.html#style look into how to style here
