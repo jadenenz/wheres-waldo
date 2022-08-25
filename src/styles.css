@@ -29,3 +29,7 @@
 .picture--actual-container {
     position: relative;
 }
+
+.timer--container {
+    display: none;
+}

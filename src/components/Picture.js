@@ -1,5 +1,6 @@
 import React, { useEffect } from "react"
 import Highlight from "./Highlight"
+import Timer from "./Timer"
 import waldoImg from "../images/waldo-beach.jpg"
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
@@ -71,17 +72,22 @@ function Picture() {
         console.log(x,y)
     }
 
-    //checks the highlighted click area to see if the coordinates of the char match the guess
-    function checkHighlight() {
-        const waldo = characterCoords[0].waldo
-        console.log(waldo[0] <= displayHighlight.x <= waldo[2]) //FIX THE CHECK LOGIC FOR THIS!!!
+    function checkHighlight(charName) {
+        const charNamex1 = charName[0]
+        const charNamex2 = charName[2]
+        const charNamey1 = charName[1]
+        const charNamey2 = charName[3]
+        if(charNamex1 <= displayHighlight.x && displayHighlight.x <= charNamex2 && charNamey1 <= displayHighlight.y && displayHighlight.y <= charNamey2){
+            
+        }
     }
 
     return (
         <div className="picture--container">
+            <Timer />
             <div className="picture--actual-container">
             <img src={waldoImg} onClick={handleClick} alt="wheres waldo puzzle"></img>
-            {!emptyCoords && <Highlight coords={displayHighlight} checkHighlight={checkHighlight} />}
+            {!emptyCoords && <Highlight coords={displayHighlight} checkHighlight={checkHighlight} characterCoords={characterCoords} />}
             </div>
         </div>
     )
