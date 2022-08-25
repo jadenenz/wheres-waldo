@@ -1,6 +1,6 @@
 import React from "react"
 
-function Highlight( { coords, checkHighlight, characterCoords } ) {
+function Highlight( { coords, onGuess, characterCoords } ) {
 
     const divStyle = {
         position: 'absolute',
@@ -8,13 +8,17 @@ function Highlight( { coords, checkHighlight, characterCoords } ) {
         top: coords.y,
     }
 
+    function handleCharacterClick(charName) {
+        onGuess(charName)
+    }
+
     return (
         <div style={divStyle} className="highlight--container">
             <div className="highlight--box"></div>
             <div className="highlight--buttons">
-                <button onClick={() => checkHighlight(characterCoords[0].waldo)}>Waldo</button>
-                <button onClick={() => checkHighlight(characterCoords[0].odlaw)}>Odlaw</button>
-                <button onClick={() => checkHighlight(characterCoords[0].wizard)}>Wizard</button>
+                <button onClick={() => handleCharacterClick('waldo')}>Waldo</button>
+                <button onClick={() => handleCharacterClick('odlaw')}>Odlaw</button>
+                <button onClick={() => handleCharacterClick('wizard')}>Wizard</button>
             </div>
         </div>
     )

@@ -1,6 +1,7 @@
 import React, { useEffect } from "react"
 import Highlight from "./Highlight"
 import Timer from "./Timer"
+import GuessResult from "./GuessResult"
 import waldoImg from "../images/waldo-beach.jpg"
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
@@ -20,12 +21,13 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-
+     
 //init firestore
 const db = getFirestore()
 
 //collection ref
 const colRef = collection(db, 'waldo')
+
 
 
 
@@ -39,7 +41,16 @@ function Picture() {
     )
 
     //character coordinates from the querySnapshot to validate against
-    const [characterCoords, setCharacterCoords] = React.useState()
+    const [characterCoords, setCharacterCoords] = React.useState(null)
+
+    //currently selected character
+    const [selectedCharacter, setSelectedCharacter] = React.useState(null)
+
+    //flags to show guess alerts
+    const [guessDisplay, setGuessDisplay] = React.useState(null)
+    const [correctAnswer, setCorrectAnswer] = React.useState(null)
+
+
 
     useEffect(() => {
         async function loadCoords() {
@@ -57,6 +68,8 @@ function Picture() {
         loadCoords()
     },[])
 
+    
+
     const emptyCoords = (displayHighlight.x === null && displayHighlight.y === null)
 
 
@@ -69,25 +82,55 @@ function Picture() {
                 y: y,
             }
         )
+        setSelectedCharacter(null)
         console.log(x,y)
     }
 
-    function checkHighlight(charName) {
-        const charNamex1 = charName[0]
-        const charNamex2 = charName[2]
-        const charNamey1 = charName[1]
-        const charNamey2 = charName[3]
-        if(charNamex1 <= displayHighlight.x && displayHighlight.x <= charNamex2 && charNamey1 <= displayHighlight.y && displayHighlight.y <= charNamey2){
-            
-        }
+    
+    // function checkHighlight(charName) {
+    //     setSelectedCharacter(charName)
+    //     const charNamex1 = charName[0]
+    //     const charNamex2 = charName[2]
+    //     const charNamey1 = charName[1]
+    //     const charNamey2 = charName[3]
+    //     if(charNamex1 <= displayHighlight.x && displayHighlight.x <= charNamex2 && charNamey1 <= displayHighlight.y && displayHighlight.y <= charNamey2){
+    //         setCorrectAnswer(true)
+    //     } else {
+    //         setCorrectAnswer(false)
+    //     }
+    // }
+    
+    function handleGuess(charName) {
+        setSelectedCharacter(charName)
+        //MOVE THE FINAL GUESS CHECKING LOGIC TO IN THIS FUNCTION
+        //
     }
+
+    // useEffect(() => {
+    //     const timeoutId = setTimeout(() => setGuessDisplay(false), 5000);
+    //     if (guess !== null){
+    //         setGuessDisplay(true)
+    //     }
+    //     return function cleanup() {
+    //         clearTimeout(timeoutId)
+    //     }
+    // },[guess])
+
+    useEffect(() => {
+        const timeoutId = setTimeout(() => setGuessDisplay(false), 5000);
+        
+        return function cleanup() {
+            clearTimeout(timeoutId)
+        }
+    },[])
 
     return (
         <div className="picture--container">
             <Timer />
             <div className="picture--actual-container">
+            {guessDisplay && <GuessResult correct={correctAnswer} />}
             <img src={waldoImg} onClick={handleClick} alt="wheres waldo puzzle"></img>
-            {!emptyCoords && <Highlight coords={displayHighlight} checkHighlight={checkHighlight} characterCoords={characterCoords} />}
+            {!emptyCoords && <Highlight coords={displayHighlight} onGuess={handleGuess} characterCoords={characterCoords} />}
             </div>
         </div>
     )

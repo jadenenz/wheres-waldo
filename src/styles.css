@@ -33,3 +33,23 @@
 .timer--container {
     display: none;
 }
+
+.guessResult {
+    padding: 0 20px;
+    position: absolute;
+    left: 50%;
+    top: -10%;
+    transform: translateX(-50%);
+    background: black;
+    color: white;
+    border-radius: 5px;
+}
+
+.guessResult--correct {
+    background: green
+}
+
+.guessResult--wrong {
+    background: rgb(241, 46, 46);
+    color: black;
+}
