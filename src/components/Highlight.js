@@ -1,24 +1,48 @@
-import React from "react"
+import React from 'react'
 
-function Highlight( { coords, onGuess, characterCoords } ) {
-
+function Highlight({ coords, onGuess, characterCoords, foundCharacter }) {
     const divStyle = {
         position: 'absolute',
         left: coords.x,
         top: coords.y,
     }
 
-    function handleCharacterClick(charName) {
-        onGuess(charName)
+    function handleCharacterClick(charCoordArray) {
+        onGuess(charCoordArray)
+        console.log(charCoordArray)
     }
 
     return (
         <div style={divStyle} className="highlight--container">
             <div className="highlight--box"></div>
             <div className="highlight--buttons">
-                <button onClick={() => handleCharacterClick('waldo')}>Waldo</button>
-                <button onClick={() => handleCharacterClick('odlaw')}>Odlaw</button>
-                <button onClick={() => handleCharacterClick('wizard')}>Wizard</button>
+                {!foundCharacter.waldo && (
+                    <button
+                        onClick={() =>
+                            handleCharacterClick(characterCoords[0].waldo)
+                        }
+                    >
+                        Waldo
+                    </button>
+                )}
+                {!foundCharacter.odlaw && (
+                    <button
+                        onClick={() =>
+                            handleCharacterClick(characterCoords[0].odlaw)
+                        }
+                    >
+                        Odlaw
+                    </button>
+                )}
+                {!foundCharacter.wizard && (
+                    <button
+                        onClick={() =>
+                            handleCharacterClick(characterCoords[0].wizard)
+                        }
+                    >
+                        Wizard
+                    </button>
+                )}
             </div>
         </div>
     )

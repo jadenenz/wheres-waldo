@@ -1,4 +1,4 @@
-.picture--container{
+.picture--container {
     display: flex;
     justify-content: center;
     margin-top: 15vh;
@@ -17,7 +17,7 @@
 .highlight--box {
     height: 50px;
     width: 50px;
-    border: solid red
+    border: solid red;
 }
 
 .highlight--buttons {
@@ -46,10 +46,21 @@
 }
 
 .guessResult--correct {
-    background: green
+    background: green;
 }
 
 .guessResult--wrong {
     background: rgb(241, 46, 46);
     color: black;
+}
+
+.winScreen {
+    position: absolute;
+    z-index: 4;
+    background: lightgrey;
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 3em;
+    padding: 0 20px;
 }
