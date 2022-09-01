@@ -5,7 +5,14 @@ import WinScreen from './WinScreen.js'
 import waldoImg from '../images/waldo-beach.jpg'
 // Import the functions you need from the SDKs you need
 import { initializeApp } from 'firebase/app'
-import { getFirestore, query, collection, getDocs } from 'firebase/firestore'
+import {
+    getFirestore,
+    query,
+    collection,
+    getDocs,
+    doc,
+    addDoc,
+} from 'firebase/firestore'
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -25,8 +32,11 @@ const app = initializeApp(firebaseConfig)
 //init firestore
 const db = getFirestore()
 
-//collection ref
-const colRef = collection(db, 'waldo')
+//collection ref for waldo
+const wadloColRef = collection(db, 'waldo')
+
+//collection ref for highscores
+const highscoresColRef = collection(db, 'highscores')
 
 function Picture() {
     const [displayHighlight, setDisplayHighlight] = React.useState({
@@ -58,6 +68,19 @@ function Picture() {
     //timeoutID for timer
     const [timerTimeoutId, setTimerTimeoutId] = React.useState(null)
 
+    //stores the highscores loaded from the db
+    const [highscores, setHighscores] = React.useState(null)
+
+    async function loadHighScores() {
+        const recentQuery = query(highscoresColRef)
+        const querySnapshot = await getDocs(recentQuery)
+        let highscoresArray = []
+        querySnapshot.docs.forEach((doc) => {
+            highscoresArray.push(doc.data())
+        })
+        setHighscores(highscoresArray)
+    }
+
     React.useEffect(() => {
         let interval = null
         interval = setInterval(() => {
@@ -69,7 +92,7 @@ function Picture() {
 
     useEffect(() => {
         async function loadCoords() {
-            const recentQuery = query(colRef)
+            const recentQuery = query(wadloColRef)
             const querySnapshot = await getDocs(recentQuery)
             // console.log('querySnapshot', querySnapshot.docs)
             let characters = []
@@ -81,6 +104,7 @@ function Picture() {
         }
 
         loadCoords()
+        loadHighScores()
     }, [])
 
     const emptyCoords =
@@ -157,6 +181,17 @@ function Picture() {
         setGuessDisplayTimeoutId(newId)
     }
 
+    //submits the highscore from the current session to the db
+    async function handleSubmitScore(score, name) {
+        // Add a new document with a generated id.
+        const docRef = await addDoc(collection(db, 'highscores'), {
+            name: name,
+            score: score,
+        })
+        console.log('Document written with ID: ', docRef.id)
+        loadHighScores()
+    }
+
     // useEffect(() => {
     //     const guessDisplayTimeoutId = setTimeout(() => setGuessDisplay(false), 5000);
     //     if (guess !== null){
@@ -177,7 +212,13 @@ function Picture() {
         <div className="picture--container">
             <div className="picture--actual-container">
                 {guessDisplay && <GuessResult correct={correctAnswer} />}
-                {foundAllChars && <WinScreen time={time} />}
+                {foundAllChars && (
+                    <WinScreen
+                        onSubmitScore={handleSubmitScore}
+                        time={time}
+                        highscores={highscores}
+                    />
+                )}
                 <img
                     src={waldoImg}
                     onClick={handleClick}
