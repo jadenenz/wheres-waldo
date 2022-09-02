@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import Highlight from './Highlight'
 import GuessResult from './GuessResult'
+import CharacterImages from './CharacterImages'
 import WinScreen from './WinScreen.js'
 import waldoImg from '../images/waldo-beach.jpg'
 // Import the functions you need from the SDKs you need
@@ -232,6 +233,7 @@ function Picture() {
                         foundCharacter={foundCharacter}
                     />
                 )}
+                <CharacterImages foundCharacter={foundCharacter} />
             </div>
         </div>
     )

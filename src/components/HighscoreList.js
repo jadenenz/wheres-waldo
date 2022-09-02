@@ -1,12 +1,15 @@
 import React from 'react'
 
-//need to sort this array by score
 export default function HighscoreList({ highscores }) {
-    const highscoreMap = highscores.map((score, index) => (
+    const sortedHighscores = highscores.sort((a, b) =>
+        a.score > b.score ? 1 : -1
+    )
+    sortedHighscores.length = 5
+    const highscoreMap = sortedHighscores.map((score, index) => (
         <p key={index}>
-            {score.name}: {score.score}s
+            #{index + 1} {score.name}: {score.score}s
         </p>
     ))
 
-    return <div>{highscoreMap}</div>
+    return <div>Top five scores:{highscoreMap}</div>
 }

@@ -4,6 +4,12 @@ import './styles.css'
 function App() {
     return (
         <div>
+            <div className="main--introduction">
+                <h2 className="whereswaldo">Where's Waldo?</h2>
+                <p className="main--instructions">
+                    Find all three characters and record your time!
+                </p>
+            </div>
             <Picture />
         </div>
     )
@@ -24,8 +30,8 @@ export default App
 //   (DONE)SUBMIT THE SCORE TO HIGH SCORES IN FIRESTORE
 //   (DONE)ONCE ALL THREE CHARACTERS HAVE BEEN FOUND, POP UP CONGRATULATIONS WITH TIMER
 //   (DONE)DISPLAY HIGH SCORES ON WIN SCREEN?
-//SORT ARRAY OF HIGHSCORES IN ASCENDING ORDER
-//STYLE IT UP A BIT
-////ADD PICTURES FOR EACH CHARACTER
+//   (DONE)SORT ARRAY OF HIGHSCORES IN ASCENDING ORDER
+//   (DONE)STYLE IT UP A BIT
+//   (DONE)ADD PICTURES FOR EACH CHARACTER
 //ADD A LITTLE DEV FOOTER
 //FINISH UP STYLING

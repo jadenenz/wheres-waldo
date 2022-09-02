@@ -1,7 +1,19 @@
+html {
+    height: 100vh;
+    width: 100vw;
+    font-family: 'Roboto', sans-serif;
+}
+
+.main--instructions,
+.whereswaldo {
+    display: flex;
+    justify-content: center;
+}
+
 .picture--container {
     display: flex;
     justify-content: center;
-    margin-top: 15vh;
+    margin-top: 5vh;
 }
 
 .picture--container > img {
@@ -28,6 +40,8 @@
 
 .picture--actual-container {
     position: relative;
+    display: flex;
+    flex-direction: column;
 }
 
 .timer--container {
@@ -38,7 +52,7 @@
     padding: 0 20px;
     position: absolute;
     left: 50%;
-    top: -10%;
+    top: -5%;
     transform: translateX(-50%);
     background: black;
     color: white;
@@ -58,9 +72,25 @@
     position: absolute;
     z-index: 4;
     background: lightgrey;
-    top: 20%;
+    top: 10%;
     left: 50%;
     transform: translateX(-50%);
-    font-size: 3em;
+    font-size: 2em;
     padding: 0 20px;
+}
+
+.characterImages {
+    margin-top: 5px;
+    align-self: center;
+}
+
+.characterImages > img {
+    height: 100px;
+    width: 100px;
+}
+
+.waldo--faded,
+.wizard--faded,
+.odlaw--faded {
+    filter: grayscale(100%);
 }
