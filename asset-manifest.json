@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/wheres-waldo/static/css/main.0ffc9e59.css",
+    "main.js": "/wheres-waldo/static/js/main.6c25daef.js",
+    "static/media/waldo-beach.jpg": "/wheres-waldo/static/media/waldo-beach.cd440f3b0de09b6c740f.jpg",
+    "static/media/wizard-test.png": "/wheres-waldo/static/media/wizard-test.b8274e1d52b20f54dc75.png",
+    "static/media/odlaw-character.png": "/wheres-waldo/static/media/odlaw-character.04244283f4a6782034c6.png",
+    "index.html": "/wheres-waldo/index.html",
+    "main.0ffc9e59.css.map": "/wheres-waldo/static/css/main.0ffc9e59.css.map",
+    "main.6c25daef.js.map": "/wheres-waldo/static/js/main.6c25daef.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.0ffc9e59.css",
+    "static/js/main.6c25daef.js"
+  ]
+}
